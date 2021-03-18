@@ -1,0 +1,13 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd backend && npm run dev",
+    "client": "cd client && npm start",
+    "start": "concurrently \"npm run client\" \" npm run server\" "
+  },
+  "author": "",
+  "license": "ISC"
+}

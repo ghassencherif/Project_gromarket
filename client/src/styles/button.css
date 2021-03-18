@@ -1,0 +1,21 @@
+.login-btn{
+    padding: 7px 15px 7px 15px;
+    border-radius: 10px;
+    color: #303F9F;
+    border: 2px solid #303F9F;
+    outline: none;
+    background-color: #FAFAFA;
+    font-weight: bold ;
+    cursor: pointer;
+}
+
+.hire-btn {
+    border: 2px solid #E62E55 ;
+    color: #E62E55;
+    font-weight: bold ;
+    border-radius: 10px;
+    padding: 7px 25px 7px 25px;
+    outline: none;
+    cursor: pointer;
+    background-color: #FAFAFA;
+}
