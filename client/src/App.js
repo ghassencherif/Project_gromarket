@@ -8,6 +8,7 @@ import Profile from "./components/Profile";
 import VerificationProcess from "./components/VerificationProcess";
 import Dashboard from "./components/Dashboard/Dashboard";
 import DeliveryBoys from "./components/Dashboard/DeliveryBoys";
+import Froms from "./components/Froms";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/signup" component={SignUp} />
       <Route path="/Verification" component={VerificationProcess} />
       <Route path="/admin/dashboard" component={Dashboard} />
+      <Route path="/profile/forms/" component={Froms} />
     </div>
   );
 }

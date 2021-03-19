@@ -34,7 +34,6 @@ export default function AddModal() {
 
   const addSurvey = (e) => {
     e.preventDefault();
-
     dispatch(
       addQuestion({
         question,

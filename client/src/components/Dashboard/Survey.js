@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -21,12 +21,10 @@ function Survey() {
         <Grid item xs={12}>
           <AddModal />
         </Grid>
-        {survey.map((el, i) => (
-          <Grid item xs={12} key={i}>
+        {survey.map((el, _id) => (
+          <Grid item xs={12} key={_id}>
             <Paper className={classes.paper} style={{ textAlign: "start" }}>
-              <h3>
-                Q{i + 1}: {el.question}
-              </h3>
+              <h3>Q1: {el.question}</h3>
               <span>{el.questionResponces.join(" / ")}</span>
             </Paper>
             <Paper className={classes.paper} style={{ textAlign: "right" }}>

@@ -14,6 +14,7 @@ const initialState = {
   loading: false,
   user: null,
   errors: null,
+  isAuth: null,
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -40,6 +41,7 @@ const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: true,
+        user: payload,
       };
     case LOGIN_FAIL:
       return {
@@ -58,6 +60,7 @@ const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         loading: true,
         user: payload,
+        isAuth: payload,
       };
     case GET_PROFILE_FAIL:
       return {

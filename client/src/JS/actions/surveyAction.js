@@ -9,6 +9,7 @@ export const getSurvey = () => (dispatch) => {
 };
 
 export const deleteQuestion = (id) => (dispatch) => {
+  console.log(id);
   axios
     .delete(`/admin/deleteSurvey/${id}`)
     .then((res) => dispatch(getSurvey()))
