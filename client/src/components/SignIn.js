@@ -15,7 +15,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { login } from "../redux/actions/userAction";
+import { login } from "../JS/actions/userAction";
 
 function Copyright() {
   return (

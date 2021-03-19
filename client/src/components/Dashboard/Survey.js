@@ -1,38 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import AddModal from "./AddModal";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { getSurvey, deleteQuestion } from "../../JS/actions/surveyAction";
 
 function Survey() {
   const classes = useStyles();
+  const survey = useSelector((state) => state.surveyAll.survey);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSurvey());
+  }, []);
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <AddModal />
         </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper} style={{ textAlign: "start" }}>
-            <h3>Q1:</h3>
-          </Paper>
-          <Paper className={classes.paper} style={{ textAlign: "right" }}>
-            <Button variant="contained" color="secondary">
-              Delete
-            </Button>
-          </Paper>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper} style={{ textAlign: "start" }}>
-            <h3>Q1:</h3>
-          </Paper>
-          <Paper className={classes.paper} style={{ textAlign: "right" }}>
-            <Button variant="contained" color="secondary">
-              Delete
-            </Button>
-          </Paper>
-        </Grid>
+        {survey.map((el, i) => (
+          <Grid item xs={12} key={i}>
+            <Paper className={classes.paper} style={{ textAlign: "start" }}>
+              <h3>
+                Q{i + 1}: {el.question}
+              </h3>
+              <span>{el.questionResponces.join(" / ")}</span>
+            </Paper>
+            <Paper className={classes.paper} style={{ textAlign: "right" }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => dispatch(deleteQuestion(el._id))}>
+                Delete
+              </Button>
+            </Paper>
+          </Grid>
+        ))}
       </Grid>
     </div>
   );

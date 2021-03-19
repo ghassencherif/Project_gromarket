@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import { addQuestion } from "../../JS/actions/surveyAction";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -22,14 +24,32 @@ function getModalStyle() {
 
 export default function AddModal() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
-  const [answers, setAnswers] = useState([]);
+  const [question, setQuestion] = useState("");
+  const [questionResponces, setQuestionResponces] = useState([]);
   const [answer, setAnswer] = useState("");
+
+  const addSurvey = (e) => {
+    e.preventDefault();
+
+    dispatch(
+      addQuestion({
+        question,
+        questionResponces,
+      })
+    );
+    setQuestionResponces([]);
+    handleClose();
+  };
+
   const addAnswer = (newAnswer, e) => {
     e.preventDefault();
-    setAnswers((prevState) => [...prevState, newAnswer]);
+    setQuestionResponces([...questionResponces, newAnswer]);
+    setAnswer("");
+    setOpen(true);
   };
 
   const handleOpen = () => {
@@ -54,7 +74,6 @@ export default function AddModal() {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
-        onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -71,17 +90,18 @@ export default function AddModal() {
                 width: 700,
                 marginBottom: 5,
               }}
+              onChange={(e) => setQuestion(e.target.value)}
             />
             <form>
               <input
-                name="body"
+                name="answer"
                 placeholder="your comment ..."
                 aria-describedby="basic-addon1"
                 onChange={(e) => setAnswer(e.target.value)}
                 className="form-control"
                 value={answer}
               />
-              <button onClick={addAnswer}>Add Answer</button>
+              <button onClick={(e) => addAnswer(answer, e)}>Add Answer</button>
             </form>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button
@@ -90,7 +110,11 @@ export default function AddModal() {
                 onClick={handleClose}>
                 Cancel
               </Button>
-              <Button variant="contained" color="primary" style={{ margin: 5 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ margin: 5 }}
+                onClick={addSurvey}>
                 Add
               </Button>
             </div>

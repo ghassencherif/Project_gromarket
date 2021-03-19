@@ -3,6 +3,7 @@ const connectDB = require("./config/connectDB");
 
 const supermarket = require('./routes/supermarket')
 const user = require('./routes/user')
+const survey = require('./routes/survey')
 const app = express();
 
 
@@ -10,7 +11,7 @@ app.use(express.json());
 
 connectDB();
 
-app.use('/', user, supermarket)
+app.use('/', user,survey, supermarket)
 
 
 

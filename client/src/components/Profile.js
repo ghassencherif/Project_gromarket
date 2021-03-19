@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile } from "../redux/actions/userAction";
+import { getProfile } from "../JS/actions/userAction";
 
 function Profile() {
   const dispatch = useDispatch();
