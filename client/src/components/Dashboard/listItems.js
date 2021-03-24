@@ -17,7 +17,7 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <Link to="/admin/dashboard">
+      <Link to="/admin/dashboard" style={{ textDecoration: "none" }}>
         <ListItemText primary="Dashboard" />
       </Link>
     </ListItem>
@@ -25,7 +25,7 @@ export const mainListItems = (
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
-      <Link to="/admin/dashboard/Orders">
+      <Link to="/admin/dashboard/Orders" style={{ textDecoration: "none" }}>
         <ListItemText primary="Orders" />
       </Link>
     </ListItem>
@@ -33,7 +33,9 @@ export const mainListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <Link to="/admin/dashboard/deliveryboy">
+      <Link
+        to="/admin/dashboard/deliveryboy"
+        style={{ textDecoration: "none" }}>
         <ListItemText primary="Delivery Boys" />
       </Link>
     </ListItem>
@@ -41,7 +43,7 @@ export const mainListItems = (
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <Link to="/admin/dashboard/Survey">
+      <Link to="/admin/dashboard/Survey" style={{ textDecoration: "none" }}>
         <ListItemText primary="Survey" />
       </Link>
     </ListItem>
@@ -49,7 +51,11 @@ export const mainListItems = (
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <Link
+        to="/admin/dashboard/SuperMarket"
+        style={{ textDecoration: "none" }}>
+        <ListItemText primary="SuperMarket" />
+      </Link>
     </ListItem>
   </div>
 );

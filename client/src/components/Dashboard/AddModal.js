@@ -28,8 +28,10 @@ export default function AddModal() {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+  const [disable, setDisable] = useState("");
   const [question, setQuestion] = useState("");
   const [questionResponces, setQuestionResponces] = useState([]);
+  const [answerType, setAnswerType] = useState("");
   const [answer, setAnswer] = useState("");
 
   const addSurvey = (e) => {
@@ -38,6 +40,7 @@ export default function AddModal() {
       addQuestion({
         question,
         questionResponces,
+        answerType,
       })
     );
     setQuestionResponces([]);
@@ -57,6 +60,7 @@ export default function AddModal() {
 
   const handleClose = () => {
     setOpen(false);
+    setQuestionResponces([]);
   };
 
   return (
@@ -92,15 +96,54 @@ export default function AddModal() {
               onChange={(e) => setQuestion(e.target.value)}
             />
             <form>
-              <input
-                name="answer"
-                placeholder="your comment ..."
-                aria-describedby="basic-addon1"
-                onChange={(e) => setAnswer(e.target.value)}
-                className="form-control"
-                value={answer}
-              />
-              <button onClick={(e) => addAnswer(answer, e)}>Add Answer</button>
+              <h4>Answer Type:</h4>
+              <div>
+                <input
+                  type="radio"
+                  name="answerStyle"
+                  value="radio"
+                  onChange={(e) => setAnswerType(e.target.value)}
+                />
+                <labe>One answer</labe>
+                <input
+                  type="radio"
+                  name="answerStyle"
+                  value="checkbox"
+                  onChange={(e) => setAnswerType(e.target.value)}
+                />
+                <labe>Multi-Answer</labe>
+                <input
+                  type="radio"
+                  name="answerStyle"
+                  value="text"
+                  onChange={(e) => setAnswerType(e.target.value)}
+                />
+                <labe>Text Answer</labe>
+                <input
+                  type="radio"
+                  name="answerStyle"
+                  value="radio text"
+                  onChange={(e) => setAnswerType(e.target.value)}
+                />
+                <labe>One answer with Text</labe>
+              </div>
+              <div style={{ margin: "20px 0px 20px 0px " }}>
+                <input
+                  name="answer"
+                  placeholder="Add answer"
+                  aria-describedby="basic-addon1"
+                  onChange={(e) => setAnswer(e.target.value)}
+                  className="form-control"
+                  value={answer}
+                  disabled={answerType === "text" ? "disable" : ""}
+                />
+                <button
+                  onClick={(e) => addAnswer(answer, e)}
+                  disabled={answerType === "text" ? "disable" : ""}>
+                  Add Answer
+                </button>
+              </div>
+              {questionResponces.join(" | ")}
             </form>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button

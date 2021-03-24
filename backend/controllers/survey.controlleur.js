@@ -11,11 +11,12 @@ module.exports = surveyController = {
         }
       },
       addSurvey: async (req, res)=>{
-        const {question, questionResponces} = req.body
+        const {question, questionResponces, answerType} = req.body
         try {
             const newSurvey = new Survey({
                 question, 
-                questionResponces
+                questionResponces,
+                answerType
             })
             const addSurvey = await newSurvey.save()
             res.status(200).json(addSurvey)
@@ -25,7 +26,7 @@ module.exports = surveyController = {
     },
     
     deleteSurvey: async (req, res) => {
-        const {_id} = req.params
+        const {_id} = req.body
         try {
             const deleteResult = await Survey.findOneAndDelete({ _id: _id });
           if (deleteResult)

@@ -25,6 +25,7 @@ import Deposits from "./Deposits";
 import Orders from "./Orders";
 import DeliveryBoys from "./DeliveryBoys";
 import Survey from "./Survey";
+import SuperMarket from "./SuperMarket";
 
 function Copyright() {
   return (
@@ -205,6 +206,7 @@ export default function Dashboard() {
           </Grid>
           <Route path="/admin/dashboard/deliveryboy" component={DeliveryBoys} />
           <Route path="/admin/dashboard/Survey" component={Survey} />
+          <Route path="/admin/dashboard/SuperMarket" component={SuperMarket} />
           <Box pt={4}>
             <Copyright />
           </Box>

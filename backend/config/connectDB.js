@@ -15,4 +15,5 @@ module.exports = connectDB = async () => {
   } catch (error) {
     console.log(error);
   }
+  
 };
