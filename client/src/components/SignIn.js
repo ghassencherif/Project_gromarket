@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -65,7 +65,14 @@ export default function SignIn() {
         password,
       })
     );
+    refreshPage();
   };
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 500);
+    console.log("page to reload");
+  }
 
   // useEffect(() => {
   //   dispatch(getProfile());

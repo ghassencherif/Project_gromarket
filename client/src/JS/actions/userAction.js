@@ -71,6 +71,13 @@ export const getProfile = () => async (dispatch) => {
     });
   }
 };
+export const addFiles = (id, newFile) => (dispatch) => {
+  console.log(id, newFile);
+  axios
+    .post(`/upload/${id}`, newFile)
+    .then((res) => dispatch(getProfile()))
+    .catch((err) => console.log(err));
+};
 
 // export const editUser = (id, editUser) => (dispatch) => {
 //   axios

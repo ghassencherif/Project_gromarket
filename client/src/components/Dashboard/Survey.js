@@ -24,7 +24,7 @@ function Survey() {
         {survey.map((el, _id) => (
           <Grid item xs={12} key={_id}>
             <Paper className={classes.paper} style={{ textAlign: "start" }}>
-              <h3>Q1: {el.question}</h3>
+              <h3>{el.question}</h3>
               <span>{el.questionResponces.join(" / ")}</span>
             </Paper>
             <Paper className={classes.paper} style={{ textAlign: "right" }}>

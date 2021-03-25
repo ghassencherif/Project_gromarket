@@ -12,14 +12,17 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import DeliveryBoys from "./components/Dashboard/DeliveryBoys";
 import Froms from "./components/Froms";
 import { getSurvey } from "./JS/actions/surveyAction";
+import { getProfile } from "./JS/actions/userAction";
 
 function App() {
   const survey = useSelector((state) => state.surveyAll.survey);
+  const isAuth = useSelector((state) => state.user.isAuth);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSurvey());
+    dispatch(getProfile());
   }, []);
   return (
     <div>
@@ -31,8 +34,8 @@ function App() {
       <Route path="/Verification" component={VerificationProcess} />
       <Route path="/admin/dashboard" component={Dashboard} />
       <Route
-        path="/profile/forms/"
-        render={(props) => <Froms survey={survey} {...props} />}
+        path="/profile/:id"
+        render={(props) => <Froms surveys={survey} {...props} />}
       />
     </div>
   );

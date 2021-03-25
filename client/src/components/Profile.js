@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../JS/actions/userAction";
+import UploadFiles from "./UploadFiles";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -25,7 +26,8 @@ function Profile() {
       <p>Email : {isAuth.email}</p>
       <p>Email : {isAuth.address}</p>
       {isAuth.isVerified ? <p>Verified</p> : <p>not Verified</p>}
-      <Link to="/profile/forms/">forms</Link>
+      <Link to={`/profile/${isAuth._id}`}>forms</Link>
+      <UploadFiles id={isAuth._id} />
     </div>
   ) : (
     <Redirect to="/login" />

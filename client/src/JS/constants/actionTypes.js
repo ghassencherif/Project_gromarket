@@ -3,6 +3,8 @@ export const REGISTER_SUCCESS = `REGISTER_SUCCESS`;
 export const REGISTER_FAIL = `REGISTER_FAIL`;
 
 export const GET_SURVEY = `GET_SURVEY`;
+export const GET_BOYS = "GET_BOYS";
+export const GET_BOY = "GET_BOY";
 
 export const LOGIN_USER = `LOGIN_USER`;
 export const LOGIN_SUCCESS = `LOGIN_SUCCESS`;

@@ -8,6 +8,7 @@ Router.delete('/admin/deleteSurvey', surveyControlleur.deleteSurvey)
 Router.put('/admin/editeSurvey/:surveyId', surveyControlleur.editSurvey)
 Router.get('/admin/getAllSurvey', surveyControlleur.getAllSurvey)
 
+
 Router.post('/profile/:id', surveyControlleur.answerSurvey)
 
 module.exports = Router

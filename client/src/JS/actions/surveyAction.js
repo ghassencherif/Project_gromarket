@@ -17,9 +17,16 @@ export const deleteQuestion = (id) => (dispatch) => {
 };
 
 export const addQuestion = (newQuestion) => (dispatch) => {
-  console.log(newQuestion);
   axios
     .post("/admin/addSurvey", newQuestion)
+    .then((res) => dispatch(getSurvey()))
+    .catch((err) => console.log(err));
+};
+
+export const sendAnswers = (id, newAnswer) => (dispatch) => {
+  console.log("this ID", id, "and this My : ", newAnswer);
+  axios
+    .post(`/profile/${id}`, newAnswer)
     .then((res) => dispatch(getSurvey()))
     .catch((err) => console.log(err));
 };

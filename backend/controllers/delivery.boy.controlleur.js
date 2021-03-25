@@ -1,6 +1,7 @@
 const config = require("config");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
+const { ObjectID } = require("mongodb");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/User");
 const {sendEmailConfirmation} = require('./emailSercives')
@@ -83,6 +84,23 @@ module.exports = userController = {
         if (err) throw err;
         res.json({ token: `Bearer ${token}` });
       });
+    } catch (error) {
+      res.status(500).json({ errors: error });
+    }
+  },
+  getAllDeliveryBoy: async (req, res) => {
+    try {
+      const AllDeliveryBoy = await User.find();
+      res.status(200).json(AllDeliveryBoy);
+    } catch (error) {
+      res.status(500).json({ errors: error });
+    }
+  },
+  getOneUser: async (req, res) => {
+    const userId = ObjectID(req.params.id);
+    try {
+      const searchOneUser = await User.findOne(userId).populate("surveys").populate("images");
+      res.status(200).json(searchOneUser);
     } catch (error) {
       res.status(500).json({ errors: error });
     }

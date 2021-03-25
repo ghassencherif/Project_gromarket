@@ -74,6 +74,7 @@ const userReducer = (state = initialState, { type, payload }) => {
         loading: false,
         isAuth: payload,
       };
+
     default:
       return state;
   }

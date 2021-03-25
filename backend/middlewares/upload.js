@@ -11,13 +11,8 @@ const storage = multer.diskStorage({
         cb(null,crypto.randomBytes(16).toString('hex')+path.extname(file.originalname))
     }
 })
-// const fileFilter = (req, res, cb)=>{
-//     cb(null, true)
-// }
+
 const upload = multer({
-    storage: storage,
-    limits:{
-        fieldSize:1024*1024*3
-    }
+    storage: storage
 })
 module.exports = upload.single("image")

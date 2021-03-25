@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-  const loading = useSelector((state) => state.user.loading);
+  // const loading = useSelector((state) => state.user.loading);
   const user = useSelector((state) => state.user.user);
   const isAuth = localStorage.getItem("token");
   const dispatch = useDispatch();
