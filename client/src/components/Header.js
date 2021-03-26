@@ -38,6 +38,13 @@ function Header() {
             <button className="login-btn">Login</button>
           </Link>
         )}
+        {localStorage.getItem("token") ? (
+          <Link to="/ProfileUser/">
+            <button className="login-btn" style={{ marginLeft: 10 }}>
+              Profile
+            </button>
+          </Link>
+        ) : null}
       </div>
     </div>
   );

@@ -2,14 +2,6 @@ import { GET_BOYS, GET_BOY } from "../constants/actionTypes";
 
 const intialState = {
   boys: [],
-  boy: {
-    survey: [],
-    images: [],
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
-  },
 };
 
 const boysReducer = (state = intialState, action) => {

@@ -10,13 +10,13 @@ function Froms({ surveys, match }) {
 
   const [responce, setResponce] = useState([]);
   const [newAnswer, setNewAnswer] = useState({
-    question: "",
     responce: responce,
   });
 
   useEffect(() => {
     dispatch(getSurvey());
   });
+
   useEffect(() => {
     const surveyAll = window.localStorage.getItem("save-survey");
     setSurveyAll(JSON.parse(surveyAll));

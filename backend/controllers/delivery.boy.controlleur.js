@@ -4,13 +4,13 @@ const crypto = require("crypto");
 const { ObjectID } = require("mongodb");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/User");
-const {sendEmailConfirmation} = require('./emailSercives')
+const { sendEmailConfirmation } = require("./emailSercives");
 
 const secretOrKey = config.get("secretOrKey");
 module.exports = userController = {
   register: async (req, res) => {
     const { firstName, lastName, email, address, password } = req.body;
-    const emailToken = crypto.randomBytes(16).toString('hex')
+    const emailToken = crypto.randomBytes(16).toString("hex");
     try {
       const searchResultRegister = await User.findOne({ email });
       if (searchResultRegister)
@@ -19,7 +19,7 @@ module.exports = userController = {
           .json({ errors: "user already exist ! try another email adress" });
       const newUser = new User({
         firstName,
-        lastName,  
+        lastName,
         email,
         emailToken,
         address,
@@ -32,33 +32,30 @@ module.exports = userController = {
           try {
             newUser.password = hash;
             const addResult = await newUser.save();
-            sendEmailConfirmation(email, emailToken)
+            sendEmailConfirmation(email, emailToken);
             res.status(200).json(addResult);
           } catch (error) {
             res.status(500).json({ errors: error });
           }
         });
       });
-         } catch (error) {
+    } catch (error) {
       res.status(500).json({ errors: error });
     }
   },
-  emailValidation: async (req, res)=> {
+  emailValidation: async (req, res) => {
     const emailToken = req.params.emailToken;
     try {
-      const searchToken = await User.findOne({emailToken});
-      
+      const searchToken = await User.findOne({ emailToken });
+
       searchToken.isVerified = true;
       searchToken.emailToken = null;
-      const addResult = await searchToken.save()
-      res.status(200).json(addResult)
-      
+      const addResult = await searchToken.save();
+      res.status(200).json(addResult);
     } catch (err) {
-      res.status(500).json({error: err})
+      res.status(500).json({ error: err });
     }
-    
-},
-
+  },
 
   login: async (req, res) => {
     const { email, password } = req.body;
@@ -90,19 +87,23 @@ module.exports = userController = {
   },
   getAllDeliveryBoy: async (req, res) => {
     try {
-      const AllDeliveryBoy = await User.find();
+      const AllDeliveryBoy = await User.find()
+        .populate("surveys")
+        .populate("images");
       res.status(200).json(AllDeliveryBoy);
     } catch (error) {
       res.status(500).json({ errors: error });
     }
   },
   getOneUser: async (req, res) => {
-    const userId = ObjectID(req.params.id);
+    const { userId } = req.params.id;
     try {
-      const searchOneUser = await User.findOne(userId).populate("surveys").populate("images");
+      const searchOneUser = await User.findOne(userId)
+        .populate("surveys")
+        .populate("images");
       res.status(200).json(searchOneUser);
     } catch (error) {
       res.status(500).json({ errors: error });
     }
   },
-  };
+};

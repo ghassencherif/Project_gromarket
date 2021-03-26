@@ -71,14 +71,14 @@ export const getProfile = () => async (dispatch) => {
     });
   }
 };
-export const addFiles = (id, newFile) => (dispatch) => {
-  console.log(id, newFile);
-  axios
-    .post(`/upload/${id}`, newFile)
-    .then((res) => dispatch(getProfile()))
-    .catch((err) => console.log(err));
-};
-
+// export const addFiles = (id, name) => () => {
+//   console.log(("this my id ", id), name);
+//   const formData = new FormData();
+//   formData.append("image", "this array", name);
+//   axios.post(`/upload/${id}`, formData, {}).then((res) => {
+//     console.log(res);
+//   });
+// };
 // export const editUser = (id, editUser) => (dispatch) => {
 //   axios
 //     .put(`/user/${id}`, editUser)

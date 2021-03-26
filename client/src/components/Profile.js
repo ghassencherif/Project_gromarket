@@ -20,14 +20,47 @@ function Profile() {
     <Redirect to="/Verification" />
   ) : localStorage.getItem("token") ? (
     <div>
-      <h1>
-        Welcome, {isAuth.lastName} {isAuth.firstName}
-      </h1>
-      <p>Email : {isAuth.email}</p>
-      <p>Email : {isAuth.address}</p>
-      {isAuth.isVerified ? <p>Verified</p> : <p>not Verified</p>}
-      <Link to={`/profile/${isAuth._id}`}>forms</Link>
-      <UploadFiles id={isAuth._id} />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <h1>
+          Welcome, {isAuth.lastName} {isAuth.firstName}
+        </h1>
+      </div>
+      <div style={{ display: "flex", float: "right", marginRight: 100 }}>
+        <Link
+          to={`/profile/${isAuth._id}`}
+          style={{
+            textDecoration: "none",
+            backgroundColor: "orange",
+            padding: 10,
+            borderRadius: 15,
+            color: "Green",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}>
+          Apply for Delivey Boy
+        </Link>
+      </div>
+      <div style={{ margin: 50, marginLeft: 250 }}>
+        <h3>Email:</h3>
+        <p>{isAuth.email}</p>
+        <h3>Address:</h3>
+        <p>{isAuth.address}</p>
+        <h3>Status:</h3>
+        {isAuth.isVerified ? <p>Verified</p> : <p>not Verified</p>}
+        <h3>Files to upload: </h3>
+        <p>
+          Upload your License{" "}
+          <span style={{ color: "red", fontWeight: "bold" }}>Both Side</span>
+          <Link to={`/profile/upload/${isAuth._id}`}>upload</Link>
+        </p>
+        <p>
+          Upload your ID{" "}
+          <span style={{ color: "red", fontWeight: "bold" }}>Both Side</span>
+        </p>
+        <Link to={`/profile/upload/${isAuth._id}`}>upload</Link>
+        <p>Upload your SSN</p>
+        <Link to={`/profile/upload/${isAuth._id}`}>upload</Link>
+      </div>
     </div>
   ) : (
     <Redirect to="/login" />

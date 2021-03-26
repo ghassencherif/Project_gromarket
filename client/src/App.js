@@ -13,6 +13,7 @@ import DeliveryBoys from "./components/Dashboard/DeliveryBoys";
 import Froms from "./components/Froms";
 import { getSurvey } from "./JS/actions/surveyAction";
 import { getProfile } from "./JS/actions/userAction";
+import UploadFiles from "./components/UploadFiles";
 
 function App() {
   const survey = useSelector((state) => state.surveyAll.survey);
@@ -27,6 +28,7 @@ function App() {
   return (
     <div>
       <Header />
+
       <Route path="/" exact component={HireMe} />
       <Route path="/ProfileUser/" component={Profile} />
       <Route path="/login" component={SignIn} />
@@ -35,8 +37,10 @@ function App() {
       <Route path="/admin/dashboard" component={Dashboard} />
       <Route
         path="/profile/:id"
+        exact
         render={(props) => <Froms surveys={survey} {...props} />}
       />
+      <Route path="/profile/upload/:id" exact component={UploadFiles} />
     </div>
   );
 }
