@@ -2,15 +2,15 @@ const { ObjectID } = require("mongodb");
 const { User, Photo } = require("../models/User");
 
 module.exports = imageControlleur = {
-  uploadImage: async (req, res) => {
-    const userId = ObjectID(req.params.id);
-    const name = req.file.filename;
-    const path = req.file.path;
-    console.log(req.file);
-    try {
+uploadImage : async (req, res) => {
+    const userId = ObjectID(req.params.id)
+    const name  = req.file.filename
+    const path = req.file.path
+    console.log(req.file)
+      try {
       const newPhoto = new Photo({
         name: name,
-        path: path,
+        path: path
       });
       try {
         Photo.create(newPhoto, (err, doc) => {
@@ -35,5 +35,5 @@ module.exports = imageControlleur = {
     } catch (error) {
       res.status(501).json({ errors: error });
     }
-  },
-};
+}
+}

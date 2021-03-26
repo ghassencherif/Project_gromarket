@@ -96,7 +96,7 @@ module.exports = userController = {
     }
   },
   getOneUser: async (req, res) => {
-    const { userId } = req.params.id;
+    const { userId } = req.body.id;
     try {
       const searchOneUser = await User.findOne(userId)
         .populate("surveys")
